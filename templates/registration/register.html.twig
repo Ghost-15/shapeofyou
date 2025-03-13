@@ -1,0 +1,102 @@
+
+{% block title%}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{ path('app_save_user') }}" method="post">
+
+        <div class="flex h-screen flex-col bg-sky-600">
+            <div class="mt-20 p-10 sm:mx-auto sm:w-full sm:max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
+
+            <div>
+                <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    Register
+                </h2>
+            </div>
+
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="text-center leading-9 tracking-tight text-green-600"> {{ message }}, <a href="{{ path('app_login') }}" class="font-semibold text-sky-800 hover:text-sky-600 hover:underline hover:underline-offset-8">Veuillez cliquer ici pour vous connecter</a> </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="text-center leading-9 tracking-tight text-red-600"> {{ message }} </div>
+            {% endfor %}
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+                    <div class="relative z-0 w-full mb-10 group">
+                        <input type="text" name="name" id="floating_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_name" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            Name</label>
+                    </div>
+
+                    <div class="relative z-0 w-full mb-10 group">
+                        <input type="email" name="email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            Email</label>
+                    </div>
+
+                    <div class="relative z-0 w-full mb-10 group">
+                        <input type="password" name="password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                    </div>
+
+                    <div class="mt-10 grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 w-full mb-5 group">
+                        <label for="gender">Genre:</label>
+                        <select name="gender" id="gender" required>
+                            {% for gender in genders %}
+                                <option value="{{ gender.name }}">{{ gender.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+
+                        <div class="relative z-0 w-full mb-5 group">
+                        <label for="weight">Poids:</label>
+                        <select name="weight" id="weight" required>
+                            {% for weight in weights %}
+                                <option value="{{ weight.value }}">{{ weight.name }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 grid md:grid-cols-2 md:gap-6">
+                        <div class="relative z-0 w-full mb-5 group">
+                            <label for="height">Taille:</label>
+                            <select name="height" id="height" required>
+                                {% for height in heights %}
+                                    <option value="{{ height.value }}">{{ height.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="relative z-0 w-full mb-5 group">
+                            <label for="morphology">Morphologie:</label>
+                            <select name="morphology" id="morphology" required>
+                                {% for morphology in morphologies %}
+                                    <option value="{{ morphology.value }}">{{ morphology.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="mt-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                {#                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">#}
+            </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

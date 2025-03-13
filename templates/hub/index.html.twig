@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Acceuil</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+{% endblock %}
+
+{% block content %}
+    <section class="bg-gradient-to-r from-cyan-500 to-blue-500 to-90%">
+        <div class='flex items-center justify-center text-white'>
+            <div class="grid grid-cols-1 m-36">
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h1 class="mb-4 text-4xl font-mono font-semibold md:text-5xl lg:text-6xl text-white">
+                            Nous combinons la mode avec l'<span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-indigo-500 to-90% ...">IA</span>,
+                        </h1>
+                        <p class="text-3xl font-serif">
+                            pour révolutionner nos dressings et encourager une consommation plus responsable.</p>
+                    </div>
+
+                    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                        <img class="object-cover object-center rounded" src="{{ asset('img/hero.jpg') }}" alt="hero"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">Comment ça marche
+                <br class="hidden sm:block">
+            </h1>
+            <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+                <div class="p-4 md:w-1/3 flex">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M10.5 8.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0"/><path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4zm.5 2a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m9 2.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0"/>
+                            </g></svg>
+                    </div>
+                    <div class="flex-grow pl-6">
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Prendre une photo</h2>
+                        <p class="leading-relaxed text-base">
+                            photographier votre outfit puis deposer le sur notre platform
+                        </p>
+{#                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More#}
+{#                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">#}
+{#                                <path d="M5 12h14M12 5l7 7-7 7"></path>#}
+{#                            </svg>#}
+{#                        </a>#}
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/3 flex">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m20.467 8.694l.246-.566a4.36 4.36 0 0 1 2.22-2.25l.759-.339a.53.53 0 0 0 0-.963l-.717-.319a4.37 4.37 0 0 1-2.251-2.326l-.253-.611a.506.506 0 0 0-.942 0l-.253.61a4.37 4.37 0 0 1-2.25 2.327l-.718.32a.53.53 0 0 0 0 .962l.76.338a4.36 4.36 0 0 1 2.219 2.251l.246.566c.18.414.753.414.934 0M5.8 16h2.154l.6-1.5h2.892l.6 1.5H14.2L11 8H9zm4.2-5.115l.646 1.615H9.354zM15 16V8h2v8zM3 3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-9h-2v8H4V5h10V3z"/></svg>
+                    </div>
+                    <div class="flex-grow pl-6">
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">AI</h2>
+                        <p class="leading-relaxed text-base">
+                            Notre model AI analisera la photo puis vous donnera toutes les
+                            informations
+                        </p>
+{#                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More#}
+{#                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">#}
+{#                                <path d="M5 12h14M12 5l7 7-7 7"></path>#}
+{#                            </svg>#}
+{#                        </a>#}
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/3 flex">
+                    <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4 flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M133.3 33.41L77.89 47.25L34.6 148.3l33.29 22.2l27.46-54.9l17.05 4.9l-15.07 150.1H245.2l9.2-87.9l.9-8.1h4.5l-5.4-54.1l17.1-4.9l27.4 54.9l33.3-22.2l-43.3-101.05l-55.4-13.84c-5.5 3.87-12.2 6.21-19.5 7.95c-9.4 2.21-20 3.24-30.6 3.24s-21.2-1.03-30.6-3.24c-7.3-1.74-14-4.07-19.5-7.95M271.5 192.6l-1.5 14h178.8l-1.5-14zm-3.4 32l-26.7 254h62.7l46.5-216.9h17.6l46.5 216.9h62.7l-26.7-254z"/></svg>
+                    </div>
+                    <div class="flex-grow pl-6">
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Vetement</h2>
+                        <p class="leading-relaxed text-base">
+                            Grace a vos outfit nous serrons en mesure de vous suggerez
+                            d'autre outfit.
+                        </p>
+{#                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More#}
+{#                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">#}
+{#                                <path d="M5 12h14M12 5l7 7-7 7"></path>#}
+{#                            </svg>#}
+{#                        </a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Save time -->
+    <section class="container grid grid-cols-2 justify-center items-center w-full my-12 mx-auto font-nun p-8" data-aos="zoom-in-up">
+        <div class="left w-full md:w-1/2 text-left md:text-left">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 ">
+                Gagner du temps dans la recherche de vos outfit
+            </h1>
+            <p class="my-6">
+                vous permettent de créer des inspirations et d’avoir des idées de
+                looks prêtes à l’emploi. Vous pouvez aussi prendre en photo vos
+                outfits préférés pour les reproduire facilement.
+            </p>
+        </div>
+
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+            <img class="object-cover object-center rounded"
+             src="{{ asset('img/save.jpg') }}"
+             alt="pic" />
+        </div>
+
+    </section>
+
+    <!-- Testinomials -->
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Testimonials</h1>
+            <div class="flex flex-wrap -m-4">
+                <div class="p-4 md:w-1/2 w-full">
+                    <div class="h-full bg-gray-100 p-8 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
+                            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+                        </svg>
+                        <p class="leading-relaxed mb-6">
+                            "Avant, je passais des heures à chercher quoi porter,
+                            surtout pour les grandes occasions. Grâce à votre boutique,
+                            j’ai enfin trouvé des vêtements qui correspondent exactement
+                            à mon style. J’ai gagné du temps et je me sens beaucoup plus
+                            confiante dans mes choix !"
+                        </p>
+                        <a class="inline-flex items-center">
+                            <span class="flex-grow flex flex-col pl-4">
+                    <span class="title-font font-medium text-gray-900">Sarah</span>
+                    <span class="text-gray-500 text-sm">28 ans – Paris</span>
+                  </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/2 w-full">
+                    <div class="h-full bg-gray-100 p-8 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
+                            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+                        </svg>
+                        <p class="leading-relaxed mb-6">
+                            "J’avais du mal à trouver des tenues qui me
+                            plaisaient vraiment. Avec votre sélection et
+                            vos conseils, j’ai pu créer une garde-robe qui
+                            me correspond. Maintenant, je sais exactement
+                            quoi porter sans perdre de temps !"
+                        </p>
+                        <a class="inline-flex items-center">
+                            <span class="flex-grow flex flex-col pl-4">
+                    <span class="title-font font-medium text-gray-900">Lucas</span>
+                    <span class="text-gray-500 text-sm">32 ans – Lyon</span>
+                  </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Statistics -->
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+                    Notre croissance et notre succès
+                </h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+                    Construire des capacités internes et de puissantes
+                    équipes d'ingénierie pour un succès durable.
+                </p>
+            </div>
+            <div class="flex justify-center -m-4 text-center">
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-blue-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
+                        </svg>
+                        <h2 class="title-font font-medium text-3xl text-gray-900">1.3K</h2>
+                        <p class="leading-relaxed">Clients</p>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-blue-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <h2 class="title-font font-medium text-3xl text-gray-900">526</h2>
+                        <p class="leading-relaxed">Maintained</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Us Form -->
+    <section class="text-gray-600 body-font mx-12">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+            <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+                <h1 class="title-font font-medium text-3xl text-gray-900">Contactez-nous</h1>
+                <p class="leading-relaxed mt-4">
+                    Vous avez une question, une suggestion ou besoin d’assistance ?
+                    Nous sommes à votre écoute !
+                    <br>
+                    📩 Email : shapeofus@mail.com<br>
+                    📞 Téléphone : 123456789<br>
+                    <br>
+                    N’hésitez pas à nous écrire, nous serons ravis de vous répondre !
+                </p>
+            </div>
+            <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+                <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Veillez remplir le formulaire</h2>
+                <div class="relative mb-4">
+                    <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                    <input type="email" id="email" placeholder="Entrer votre email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                </div>
+                <div class="relative mb-4">
+                    <label for="text" class="leading-7 text-sm text-gray-600">Text</label>
+                    <textarea type="text" id="text" name="text" placeholder="Entrer votre text" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                </div>
+                <button class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Submit</button>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
