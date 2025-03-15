@@ -17,97 +17,70 @@ class OpenAIService
         $this->apiKey = $apiKey;
     }
 
-    public function generateCour(string $sujet, string $niveau): ?string
+    private function callOpenAI(array $messages): array|string
     {
-        $response = $this->client->request('POST', 'https://api.openai.com/v1/chat/completions',
+        try {
+            $response = $this->client->request('POST', 'https://api.openai.com/v1/chat/completions', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'model' => 'gpt-4o-mini',
+                    'messages' => $messages,
+                    'max_tokens' => 800,
+                ],
+            ]);
+
+            $data = $response->toArray();
+            return $data['choices'][0]['message']['content'] ?? [];
+        } catch (\Exception $e) {
+            return [
+                'status' => 'error',
+                'message' => 'Erreur lors de l\'appel à l\'API : ' . $e->getMessage(),
+            ];
+        }
+    }
+
+    public function detectClothes(string $imageBase64): array|string
+    {
+        $imageDataUrl = "data:image/jpeg;base64," . $imageBase64;
+
+        $prompt = "Analyse minutieusement l'image fournie.\n" .
+            "Identifie chaque vêtement présent et retourne uniquement une réponse respectant exactement la structure suivante :\n" .
+            "Je souhaite avoir dans la partie 'nom' le type de vêtement suivi de la spécificité du vêtement s'il y en a (par exemple cargo pour un pantalon) et de la couleur.\n" .
+            "Essaie de trouver la marque pour chaque vêtement et fais tout ton possible pour fournir une marque.\n" .
+            "Voici un exemple de la structure attendue :\n" .
+            "{\n" .
+            "   \"Vêtement 1\": { \"Nom\": \"T-shirt Noir Col Rond\", \"categorie\": \"t-shirt\", \"Marque\": \"Nike\" },\n" .
+            "   \"Vêtement 2\": { \"Nom\": \"Jean Slim Bleu Indigo\",\"categorie\": \"jean\", \"Marque\": \"Levi's\" },\n" .
+            "   \"Vêtement 3\": { \"Nom\": \"Sneakers Blanches\", \"categorie\": \"chaussures\", \"Marque\": \"Adidas\" },\n" .
+            "   \"Vêtement 4\": { \"Nom\": \"Blouson en Cuir Marron\", \"categorie\": \"blouson\", \"Marque\": \"Zara\" },\n" .
+            "   \"Vêtement 5\": { \"Nom\": \"Sac à Main Noir\", \"categorie\": \"accessoire\", \"Marque\": \"Chanel\" }\n" .
+            "}\n" .
+            "N'inclus aucune autre information ou commentaire en dehors du JSON.\n" .
+            "Voici l'image à analyser :";
+
+
+        $messages = [
             [
-            'headers' => [
-                'Content-Type' => 'application/json',
+                "role" => "user",
+                "content" => [
+                    [
+                        "type" => "text",
+                        "text" => $prompt,
+                    ],
+                    [
+                        "type" => "image_url",
+                        "image_url" => [
+                            "url" => $imageDataUrl,
+                            "detail" => "high",
+                        ],
+                    ],
+                ],
             ],
-            'json' => [
-                'model' => 'gpt-4',
-                'messages' => [['role' => 'user', 'content' =>
-//                    'créer un cours ayant pour sujet : "%$" avec une description de niveau "%$"',
-//                    sprintf(
-//                        $course->getTitle(),
-//                        $course->getNiveau()
-//                    )
-                    "créer un cours ayant pour sujet : ".$sujet." avec une description de niveau "
-                    .$niveau." et revons le moi sous format Json contenant title, description et niveau"
-                ]],
-                'temperature' => 0.7,
-            ],
-        ]);
+        ];
 
-        $data = $response->toArray();
-
-        return $data['choices'][0]['message']['content'] ?? null;
-    }
-
-    public function generateQCM(string $sujet, string $numb, string $niveau): ?string
-    {
-        $response = $this->client->request('POST', 'https://api.openai.com/v1/chat/completions',
-            [
-                'headers' => [
-                    'Authorization' => "Bearer ".$this->apiKey,
-                    'Content-Type' => 'application/json',
-                ],
-                'json' => [
-                    'model' => 'gpt-4',
-                    'messages' => [['role' => 'user', 'content' =>
-                        "genere moi un qcm sur ".$sujet." de niveau ".$niveau." avec ".$numb." 
-                        questions et renvoie le moi sous format Json contenant title, questions et niveau"
-                    ]],
-                    'temperature' => 0.7,
-                ],
-            ]);
-
-        $data = $response->toArray();
-
-        return $data['choices'][0]['message']['content'] ?? null;
-    }
-
-    public function generateExercice(string $sujet, string $niveau): ?string
-    {
-        $response = $this->client->request('POST', 'https://api.openai.com/v1/chat/completions',
-            [
-                'headers' => [
-                    'Authorization' => "Bearer ".$this->apiKey,
-                    'Content-Type' => 'application/json',
-                ],
-                'json' => [
-                    'model' => 'gpt-4',
-                    'messages' => [['role' => 'user', 'content' =>
-                        "genere moi un exercie sur ".$sujet." de niveau ".$niveau."
-                        et renvoie le moi sous format Json contenant title, question et niveau"
-                    ]],
-                    'temperature' => 0.7,
-                ],
-            ]);
-
-        $data = $response->toArray();
-
-        return $data['choices'][0]['message']['content'] ?? null;
-    }
-
-    public function generateAnswer(string $exercie): ?string
-    {
-        $response = $this->client->request('POST', 'https://api.openai.com/v1/chat/completions',
-            [
-                'headers' => [
-                    'Authorization' => "Bearer sk-oD2B8KzwVuKgy1t5XyW4QLXTVmpLKnSTZp-szq8adwT3BlbkFJKI54Aap0IkZNxVE018wM5Dw_kyQw6hOTDznELOBeIA",
-                    'Content-Type' => 'application/json',
-                ],
-                'json' => [
-                    'model' => 'gpt-4',
-                    'messages' => [['role' => 'user', 'content' => "corige cette exercice : ".$exercie
-                    ]],
-                    'temperature' => 0.7,
-                ],
-            ]);
-
-        $data = $response->toArray();
-
-        return $data['choices'][0]['message']['content'] ?? null;
+        return $this->callOpenAI($messages);
     }
 }

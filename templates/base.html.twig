@@ -8,10 +8,10 @@
 {% endblock %}
 
 {% block content %}
-    {#        {% block javascripts %}#}
+            {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-    {#            {% block importmap %}{{ importmap('app') }}{% endblock %}#}
-    {#        {% endblock %}#}
+            {% endblock %}
+{#    {% block importmap %}{{ importmap('app') }}{% endblock %}#}
 {% endblock %}
 
 {% include 'endbar.html.twig' %}
